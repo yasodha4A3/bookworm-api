@@ -1,5 +1,5 @@
 Arguments: 
-  C:\Program Files\nodejs\node.exe C:\Users\yasodha\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js add bcrypt
+  C:\Program Files\nodejs\node.exe C:\Users\yasodha\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js start
 
 PATH: 
   C:\ProgramData\Oracle\Java\javapath;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Common Files\lenovo\easyplussdk\bin;C:\Program Files\Git\cmd;C:\Program Files\Microsoft\Web Platform Installer\;C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET Web Pages\v1.0\;C:\Program Files (x86)\Windows Kits\8.0\Windows Performance Toolkit\;C:\Program Files\Java\jdk-9.0.4\bin;C:\Users\yasodha\Desktop\yashuJava\softwares\apache-maven-3.5.2-bin\apache-maven-3.5.2\bin;C:\Program Files\nodejs\;C:\Users\yasodha\AppData\Local\Microsoft\WindowsApps;C:\Users\yasodha\AppData\Roaming\npm;C:\Program Files\Microsoft VS Code\bin;C:\Program Files\Sublime Text 3;C:\mongodb\bin;
@@ -38,10 +38,15 @@ npm manifest:
       "prettier": "^1.9.2"
     },
     "dependencies": {
+      "bcrypt": "^1.0.3",
       "body-parser": "^1.18.2",
-      "express": "^4.16.3",
-      "jsonwebtoken": "^8.2.1",
-      "mongoose": "^5.0.15"
+      "dotenv": "^4.0.0",
+      "express": "^4.16.2",
+      "jsonwebtoken": "^8.1.0",
+      "lodash": "^4.17.5",
+      "mongoose": "^5.0.0-rc0",
+      "mongoose-unique-validator": "^2.0.0",
+      "nodemailer": "^4.4.1"
     }
   }
 
@@ -165,7 +170,7 @@ Lockfile:
       co "^4.6.0"
       json-stable-stringify "^1.0.1"
   
-  ajv@^5.2.3, ajv@^5.3.0:
+  ajv@^5.1.0, ajv@^5.2.3, ajv@^5.3.0:
     version "5.5.2"
     resolved "https://registry.yarnpkg.com/ajv/-/ajv-5.5.2.tgz#73b5eeca3fab653e3d3f9422b341ad42205dc965"
     dependencies:
@@ -337,7 +342,11 @@ Lockfile:
     version "0.6.0"
     resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.6.0.tgz#14342dd38dbcc94d0e5b87d763cd63612c0e794f"
   
-  aws4@^1.2.1:
+  aws-sign2@~0.7.0:
+    version "0.7.0"
+    resolved "https://registry.yarnpkg.com/aws-sign2/-/aws-sign2-0.7.0.tgz#b46e890934a9591f2d2f6f86d7e6a9f1b3fe76a8"
+  
+  aws4@^1.2.1, aws4@^1.6.0:
     version "1.7.0"
     resolved "https://registry.yarnpkg.com/aws4/-/aws4-1.7.0.tgz#d4d0e9b9dbfca77bf08eeb0a8a471550fe39e289"
   
@@ -875,6 +884,13 @@ Lockfile:
     dependencies:
       tweetnacl "^0.14.3"
   
+  bcrypt@^1.0.3:
+    version "1.0.3"
+    resolved "https://registry.yarnpkg.com/bcrypt/-/bcrypt-1.0.3.tgz#b02ddc6c0b52ea16b8d3cf375d5a32e780dab548"
+    dependencies:
+      nan "2.6.2"
+      node-pre-gyp "0.6.36"
+  
   binary-extensions@^1.0.0:
     version "1.11.0"
     resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-1.11.0.tgz#46aa1751fb6a2f93ee5e689bb1087d4b14c6c205"
@@ -909,6 +925,18 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/boom/-/boom-2.10.1.tgz#39c8918ceff5799f83f9492a848f625add0c766f"
     dependencies:
       hoek "2.x.x"
+  
+  boom@4.x.x:
+    version "4.3.1"
+    resolved "https://registry.yarnpkg.com/boom/-/boom-4.3.1.tgz#4f8a3005cb4a7e3889f749030fd25b96e01d2e31"
+    dependencies:
+      hoek "4.x.x"
+  
+  boom@5.x.x:
+    version "5.2.0"
+    resolved "https://registry.yarnpkg.com/boom/-/boom-5.2.0.tgz#5dd9da6ee3a5f302077436290cb717d3f4a54e02"
+    dependencies:
+      hoek "4.x.x"
   
   boxen@^1.2.1:
     version "1.3.0"
@@ -1130,7 +1158,7 @@ Lockfile:
     version "1.1.3"
     resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   
-  combined-stream@^1.0.5, combined-stream@~1.0.5:
+  combined-stream@1.0.6, combined-stream@^1.0.5, combined-stream@~1.0.5:
     version "1.0.6"
     resolved "https://registry.yarnpkg.com/combined-stream/-/combined-stream-1.0.6.tgz#723e7df6e801ac5613113a7e445a9b69cb632818"
     dependencies:
@@ -1231,6 +1259,12 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-2.0.5.tgz#3bdfecdc608147c1c67202fa291e7dca59eaa3b8"
     dependencies:
       boom "2.x.x"
+  
+  cryptiles@3.x.x:
+    version "3.1.2"
+    resolved "https://registry.yarnpkg.com/cryptiles/-/cryptiles-3.1.2.tgz#a89fbb220f5ce25ec56e8c4aa8a4fd7b5b0d29fe"
+    dependencies:
+      boom "5.x.x"
   
   crypto-random-string@^1.0.0:
     version "1.0.0"
@@ -1356,6 +1390,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/dot-prop/-/dot-prop-4.2.0.tgz#1f19e0c2e1aa0e32797c49799f2837ac6af69c57"
     dependencies:
       is-obj "^1.0.0"
+  
+  dotenv@^4.0.0:
+    version "4.0.0"
+    resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
   
   duplexer3@^0.1.4:
     version "0.1.4"
@@ -1648,7 +1686,7 @@ Lockfile:
     dependencies:
       fill-range "^2.1.0"
   
-  express@^4.16.3:
+  express@^4.16.2:
     version "4.16.3"
     resolved "https://registry.yarnpkg.com/express/-/express-4.16.3.tgz#6af8a502350db3246ecc4becf6b5a34d22f7ed53"
     dependencies:
@@ -1696,7 +1734,7 @@ Lockfile:
       assign-symbols "^1.0.0"
       is-extendable "^1.0.1"
   
-  extend@~3.0.0:
+  extend@~3.0.0, extend@~3.0.1:
     version "3.0.1"
     resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.1.tgz#a755ea7bc1adfcc5a31ce7e762dbaadc5e636444"
   
@@ -1857,6 +1895,14 @@ Lockfile:
     dependencies:
       asynckit "^0.4.0"
       combined-stream "^1.0.5"
+      mime-types "^2.1.12"
+  
+  form-data@~2.3.1:
+    version "2.3.2"
+    resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.3.2.tgz#4970498be604c20c005d4f5c23aecd21d6b49099"
+    dependencies:
+      asynckit "^0.4.0"
+      combined-stream "1.0.6"
       mime-types "^2.1.12"
   
   forwarded@~0.1.2:
@@ -2028,12 +2074,23 @@ Lockfile:
     version "1.0.5"
     resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
   
+  har-schema@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/har-schema/-/har-schema-2.0.0.tgz#a94c2224ebcac04782a0d9035521f24735b7ec92"
+  
   har-validator@~4.2.1:
     version "4.2.1"
     resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-4.2.1.tgz#33481d0f1bbff600dd203d75812a6a5fba002e2a"
     dependencies:
       ajv "^4.9.1"
       har-schema "^1.0.5"
+  
+  har-validator@~5.0.3:
+    version "5.0.3"
+    resolved "https://registry.yarnpkg.com/har-validator/-/har-validator-5.0.3.tgz#ba402c266194f15956ef15e0fcf242993f6a7dfd"
+    dependencies:
+      ajv "^5.1.0"
+      har-schema "^2.0.0"
   
   has-ansi@^2.0.0:
     version "2.0.0"
@@ -2091,9 +2148,22 @@ Lockfile:
       hoek "2.x.x"
       sntp "1.x.x"
   
+  hawk@~6.0.2:
+    version "6.0.2"
+    resolved "https://registry.yarnpkg.com/hawk/-/hawk-6.0.2.tgz#af4d914eb065f9b5ce4d9d11c1cb2126eecc3038"
+    dependencies:
+      boom "4.x.x"
+      cryptiles "3.x.x"
+      hoek "4.x.x"
+      sntp "2.x.x"
+  
   hoek@2.x.x:
     version "2.16.3"
     resolved "https://registry.yarnpkg.com/hoek/-/hoek-2.16.3.tgz#20bb7403d3cea398e91dc4710a8ff1b8274a25ed"
+  
+  hoek@4.x.x:
+    version "4.2.1"
+    resolved "https://registry.yarnpkg.com/hoek/-/hoek-4.2.1.tgz#9634502aa12c445dd5a7c5734b572bb8738aacbb"
   
   home-or-tmp@^2.0.0:
     version "2.0.0"
@@ -2129,6 +2199,14 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.1.1.tgz#df72e267066cd0ac67fb76adf8e134a8fbcf91bf"
     dependencies:
       assert-plus "^0.2.0"
+      jsprim "^1.2.2"
+      sshpk "^1.7.0"
+  
+  http-signature@~1.2.0:
+    version "1.2.0"
+    resolved "https://registry.yarnpkg.com/http-signature/-/http-signature-1.2.0.tgz#9aecd925114772f3d95b65a60abb8f7c18fbace1"
+    dependencies:
+      assert-plus "^1.0.0"
       jsprim "^1.2.2"
       sshpk "^1.7.0"
   
@@ -2533,7 +2611,7 @@ Lockfile:
     version "0.0.0"
     resolved "https://registry.yarnpkg.com/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   
-  jsonwebtoken@^8.2.1:
+  jsonwebtoken@^8.1.0:
     version "8.2.1"
     resolved "https://registry.yarnpkg.com/jsonwebtoken/-/jsonwebtoken-8.2.1.tgz#333ee39aa8f238f32fa41693e7a2fb7e42f82b31"
     dependencies:
@@ -2637,7 +2715,11 @@ Lockfile:
       p-locate "^2.0.0"
       path-exists "^3.0.0"
   
-  lodash.get@4.4.2:
+  lodash.foreach@^4.1.0:
+    version "4.5.0"
+    resolved "https://registry.yarnpkg.com/lodash.foreach/-/lodash.foreach-4.5.0.tgz#1a6a35eace401280c7f06dddec35165ab27e3e53"
+  
+  lodash.get@4.4.2, lodash.get@^4.0.2:
     version "4.4.2"
     resolved "https://registry.yarnpkg.com/lodash.get/-/lodash.get-4.4.2.tgz#2d177f652fa31e939b4438d5341499dfa3825e99"
   
@@ -2669,7 +2751,7 @@ Lockfile:
     version "4.1.1"
     resolved "https://registry.yarnpkg.com/lodash.once/-/lodash.once-4.1.1.tgz#0dd3971213c7c56df880977d504c88fb471a97ac"
   
-  lodash@^4.14.0, lodash@^4.17.4, lodash@^4.2.0, lodash@^4.3.0:
+  lodash@^4.14.0, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0:
     version "4.17.5"
     resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
   
@@ -2762,7 +2844,7 @@ Lockfile:
     version "1.33.0"
     resolved "https://registry.yarnpkg.com/mime-db/-/mime-db-1.33.0.tgz#a3492050a5cb9b63450541e39d9788d2272783db"
   
-  mime-types@^2.1.12, mime-types@~2.1.18, mime-types@~2.1.7:
+  mime-types@^2.1.12, mime-types@~2.1.17, mime-types@~2.1.18, mime-types@~2.1.7:
     version "2.1.18"
     resolved "https://registry.yarnpkg.com/mime-types/-/mime-types-2.1.18.tgz#6f323f60a83d11146f831ff11fd66e2fe5503bb8"
     dependencies:
@@ -2820,7 +2902,14 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/mongoose-legacy-pluralize/-/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
   
-  mongoose@^5.0.15:
+  mongoose-unique-validator@^2.0.0:
+    version "2.0.0"
+    resolved "https://registry.yarnpkg.com/mongoose-unique-validator/-/mongoose-unique-validator-2.0.0.tgz#76e406cd0b322bbbb79496e2b7425d885ce661c4"
+    dependencies:
+      lodash.foreach "^4.1.0"
+      lodash.get "^4.0.2"
+  
+  mongoose@^5.0.0-rc0:
     version "5.0.15"
     resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-5.0.15.tgz#5260a65e5777224ae6a24f5dc8b8d39b548c826c"
     dependencies:
@@ -2861,6 +2950,10 @@ Lockfile:
     version "0.0.7"
     resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.7.tgz#3075ce93bc21b8fab43e1bc4da7e8115ed1e7bab"
   
+  nan@2.6.2:
+    version "2.6.2"
+    resolved "https://registry.yarnpkg.com/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
+  
   nan@^2.3.0:
     version "2.10.0"
     resolved "https://registry.yarnpkg.com/nan/-/nan-2.10.0.tgz#96d0cd610ebd58d4b4de9cc0c6828cda99c7548f"
@@ -2897,6 +2990,20 @@ Lockfile:
       encoding "^0.1.11"
       is-stream "^1.0.1"
   
+  node-pre-gyp@0.6.36:
+    version "0.6.36"
+    resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.36.tgz#db604112cb74e0d477554e9b505b17abddfab786"
+    dependencies:
+      mkdirp "^0.5.1"
+      nopt "^4.0.1"
+      npmlog "^4.0.2"
+      rc "^1.1.7"
+      request "^2.81.0"
+      rimraf "^2.6.1"
+      semver "^5.3.0"
+      tar "^2.2.1"
+      tar-pack "^3.4.0"
+  
   node-pre-gyp@^0.6.39:
     version "0.6.39"
     resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.6.39.tgz#c00e96860b23c0e1420ac7befc5044e1d78d8649"
@@ -2912,6 +3019,10 @@ Lockfile:
       semver "^5.3.0"
       tar "^2.2.1"
       tar-pack "^3.4.0"
+  
+  nodemailer@^4.4.1:
+    version "4.6.4"
+    resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-4.6.4.tgz#f0d72d0c6a6ec5f4369fa8f4bf5127a31baa2014"
   
   nodemon@^1.17.3:
     version "1.17.3"
@@ -2975,7 +3086,7 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   
-  oauth-sign@~0.8.1:
+  oauth-sign@~0.8.1, oauth-sign@~0.8.2:
     version "0.8.2"
     resolved "https://registry.yarnpkg.com/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
   
@@ -3168,6 +3279,10 @@ Lockfile:
     version "0.2.0"
     resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
   
+  performance-now@^2.1.0:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/performance-now/-/performance-now-2.1.0.tgz#6309f4e0e5fa913ec1c69307ae364b4b377c9e7b"
+  
   pify@^2.0.0:
     version "2.3.0"
     resolved "https://registry.yarnpkg.com/pify/-/pify-2.3.0.tgz#ed141a6ac043a849ea588498e7dca8b15330e90c"
@@ -3269,7 +3384,7 @@ Lockfile:
     version "1.4.1"
     resolved "https://registry.yarnpkg.com/punycode/-/punycode-1.4.1.tgz#c0d5a63b2718800ad8e1eb0fa5269c84dd41845e"
   
-  qs@6.5.1:
+  qs@6.5.1, qs@~6.5.1:
     version "6.5.1"
     resolved "https://registry.yarnpkg.com/qs/-/qs-6.5.1.tgz#349cdf6eef89ec45c12d7d5eb3fc0c870343a6d8"
   
@@ -3459,6 +3574,33 @@ Lockfile:
       tunnel-agent "^0.6.0"
       uuid "^3.0.0"
   
+  request@^2.81.0:
+    version "2.85.0"
+    resolved "https://registry.yarnpkg.com/request/-/request-2.85.0.tgz#5a03615a47c61420b3eb99b7dba204f83603e1fa"
+    dependencies:
+      aws-sign2 "~0.7.0"
+      aws4 "^1.6.0"
+      caseless "~0.12.0"
+      combined-stream "~1.0.5"
+      extend "~3.0.1"
+      forever-agent "~0.6.1"
+      form-data "~2.3.1"
+      har-validator "~5.0.3"
+      hawk "~6.0.2"
+      http-signature "~1.2.0"
+      is-typedarray "~1.0.0"
+      isstream "~0.1.2"
+      json-stringify-safe "~5.0.1"
+      mime-types "~2.1.17"
+      oauth-sign "~0.8.2"
+      performance-now "^2.1.0"
+      qs "~6.5.1"
+      safe-buffer "^5.1.1"
+      stringstream "~0.0.5"
+      tough-cookie "~2.3.3"
+      tunnel-agent "^0.6.0"
+      uuid "^3.1.0"
+  
   require-uncached@^1.0.3:
     version "1.0.3"
     resolved "https://registry.yarnpkg.com/require-uncached/-/require-uncached-1.0.3.tgz#4e0d56d6c9662fd31e43011c4b95aa49955421d3"
@@ -3524,7 +3666,7 @@ Lockfile:
     version "4.0.8"
     resolved "https://registry.yarnpkg.com/rx-lite/-/rx-lite-4.0.8.tgz#0b1e11af8bc44836f04a6407e92da42467b79444"
   
-  safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
+  safe-buffer@5.1.1, safe-buffer@^5.0.1, safe-buffer@^5.1.1, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
     version "5.1.1"
     resolved "https://registry.yarnpkg.com/safe-buffer/-/safe-buffer-5.1.1.tgz#893312af69b2123def71f57889001671eeb2c853"
   
@@ -3678,6 +3820,12 @@ Lockfile:
     dependencies:
       hoek "2.x.x"
   
+  sntp@2.x.x:
+    version "2.1.0"
+    resolved "https://registry.yarnpkg.com/sntp/-/sntp-2.1.0.tgz#2c6cec14fedc2222739caf9b5c3d85d1cc5a2cc8"
+    dependencies:
+      hoek "4.x.x"
+  
   source-map-resolve@^0.5.0:
     version "0.5.1"
     resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.1.tgz#7ad0f593f2281598e854df80f19aae4b92d7a11a"
@@ -3796,7 +3944,7 @@ Lockfile:
     dependencies:
       safe-buffer "~5.1.0"
   
-  stringstream@~0.0.4:
+  stringstream@~0.0.4, stringstream@~0.0.5:
     version "0.0.5"
     resolved "https://registry.yarnpkg.com/stringstream/-/stringstream-0.0.5.tgz#4e484cd4de5a0bbbee18e46307710a8a81621878"
   
@@ -3926,7 +4074,7 @@ Lockfile:
     dependencies:
       nopt "~1.0.10"
   
-  tough-cookie@~2.3.0:
+  tough-cookie@~2.3.0, tough-cookie@~2.3.3:
     version "2.3.4"
     resolved "https://registry.yarnpkg.com/tough-cookie/-/tough-cookie-2.3.4.tgz#ec60cee38ac675063ffc97a5c18970578ee83655"
     dependencies:
@@ -4054,7 +4202,7 @@ Lockfile:
     version "1.0.1"
     resolved "https://registry.yarnpkg.com/utils-merge/-/utils-merge-1.0.1.tgz#9f95710f50a267947b2ccc124741c1028427e713"
   
-  uuid@^3.0.0:
+  uuid@^3.0.0, uuid@^3.1.0:
     version "3.2.1"
     resolved "https://registry.yarnpkg.com/uuid/-/uuid-3.2.1.tgz#12c528bb9d58d0b9265d9a2f6f0fe8be17ff1f14"
   
@@ -4140,58 +4288,13 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/yallist/-/yallist-2.1.2.tgz#1c11f9218f076089a47dd512f93c6699a6a81d52"
 
 Trace: 
-  Error: C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt: Command failed.
-  Exit code: 1
+  Error: Command failed.
+  Exit code: 3221225786
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c node-pre-gyp install --fallback-to-build
-  Directory: C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt
+  Arguments: /d /s /c nodemon --exec babel-node -- src/index.js
+  Directory: C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api
   Output:
-  node-pre-gyp info it worked if it ends with ok
-  node-pre-gyp info using node-pre-gyp@0.9.0
-  node-pre-gyp info using node@8.10.0 | win32 | x64
-  node-pre-gyp info check checked for "C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding\bcrypt_lib.node" (not found)
-  node-pre-gyp http GET https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v57-win32-x64-unknown.tar.gz
-  node-pre-gyp http 302 https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v57-win32-x64-unknown.tar.gz
-  node-pre-gyp ERR! Tried to download(302): https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v57-win32-x64-unknown.tar.gz 
-  node-pre-gyp ERR! Pre-built binaries not found for bcrypt@2.0.0 and node@8.10.0 (node-v57 ABI, unknown) (falling back to source compile with node-gyp) 
-  node-pre-gyp http 302 status code downloading tarball https://github.com/kelektiv/node.bcrypt.js/releases/download/v2.0.0/bcrypt_lib-v2.0.0-node-v57-win32-x64-unknown.tar.gz 
   
-  C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" clean )  else (node "" clean ) 
-  gyp info it worked if it ends with ok
-  gyp info using node-gyp@3.6.2
-  gyp info using node@8.10.0 | win32 | x64
-  gyp info ok 
-  
-  C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt>if not defined npm_config_node_gyp (node "C:\Program Files\nodejs\node_modules\npm\bin\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" configure --fallback-to-build --module=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding --napi_version=1 --node_abi_napi=napi )  else (node "" configure --fallback-to-build --module=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding --napi_version=1 --node_abi_napi=napi ) 
-  gyp info it worked if it ends with ok
-  gyp info using node-gyp@3.6.2
-  gyp info using node@8.10.0 | win32 | x64
-  gyp ERR! configure error 
-  gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
-  gyp ERR! stack     at PythonFinder.failNoPython (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:483:19)
-  gyp ERR! stack     at PythonFinder.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\node-gyp\lib\configure.js:508:16)
-  gyp ERR! stack     at C:\Program Files\nodejs\node_modules\npm\node_modules\graceful-fs\polyfills.js:284:29
-  gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:152:21)
-  gyp ERR! System Windows_NT 10.0.16299
-  gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "configure" "--fallback-to-build" "--module=C:\\Users\\yasodha\\Desktop\\harry\\react-project\\bookworm\\bookworm-api\\node_modules\\bcrypt\\lib\\binding\\bcrypt_lib.node" "--module_name=bcrypt_lib" "--module_path=C:\\Users\\yasodha\\Desktop\\harry\\react-project\\bookworm\\bookworm-api\\node_modules\\bcrypt\\lib\\binding" "--napi_version=1" "--node_abi_napi=napi"
-  gyp ERR! cwd C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt
-  gyp ERR! node -v v8.10.0
-  gyp ERR! node-gyp -v v3.6.2
-  gyp ERR! not ok 
-  node-pre-gyp ERR! build error 
-  node-pre-gyp ERR! stack Error: Failed to execute 'node-gyp.cmd configure --fallback-to-build --module=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding --napi_version=1 --node_abi_napi=napi' (1)
-  node-pre-gyp ERR! stack     at ChildProcess.<anonymous> (C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\node-pre-gyp\lib\util\compile.js:83:29)
-  node-pre-gyp ERR! stack     at emitTwo (events.js:126:13)
-  node-pre-gyp ERR! stack     at ChildProcess.emit (events.js:214:7)
-  node-pre-gyp ERR! stack     at maybeClose (internal/child_process.js:925:16)
-  node-pre-gyp ERR! stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)
-  node-pre-gyp ERR! System Windows_NT 10.0.16299
-  node-pre-gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\yasodha\\Desktop\\harry\\react-project\\bookworm\\bookworm-api\\node_modules\\node-pre-gyp\\bin\\node-pre-gyp" "install" "--fallback-to-build"
-  node-pre-gyp ERR! cwd C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt
-  node-pre-gyp ERR! node -v v8.10.0
-  node-pre-gyp ERR! node-pre-gyp -v v0.9.0
-  node-pre-gyp ERR! not ok 
-  Failed to execute 'node-gyp.cmd configure --fallback-to-build --module=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding\bcrypt_lib.node --module_name=bcrypt_lib --module_path=C:\Users\yasodha\Desktop\harry\react-project\bookworm\bookworm-api\node_modules\bcrypt\lib\binding --napi_version=1 --node_abi_napi=napi' (1)
       at ProcessTermError.MessageError (C:\Users\yasodha\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
       at new ProcessTermError (C:\Users\yasodha\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
       at ChildProcess.<anonymous> (C:\Users\yasodha\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
